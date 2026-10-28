@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visor LaTeX · latex-test</title><style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#101827;color:#edf3ff;font:16px system-ui,-apple-system,Segoe UI,sans-serif}
+header{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;padding:14px 22px;background:#182338}
+h1{font-size:1.1rem;margin:0;flex:1}a,button{border:1px solid #475674;background:#243450;color:white;padding:9px 13px;border-radius:9px;text-decoration:none;font:inherit;cursor:pointer}
+a:hover,button:hover{background:#354d73}main{height:calc(100dvh - 76px);padding:12px}iframe{width:100%;height:100%;border:0;border-radius:8px;background:white}
+small{color:#aebbd0}@media(max-width:680px){main{height:calc(100dvh - 130px)}}
+</style></head><body><header><h1>📄 Visor LaTeX <small>· latex-test</small></h1><button id="refresh">Actualizar PDF</button><a id="download" href="./main.pdf" target="_blank" rel="noopener">Abrir / descargar PDF</a><a href="https://github.com/JotaM22/latex-test" target="_blank" rel="noopener">Código</a></header>
+<main><iframe id="pdf" title="Documento LaTeX compilado" src="./main.pdf"></iframe></main>
+<script>function refresh(){const url='./main.pdf?v='+Date.now();document.getElementById('pdf').src=url;document.getElementById('download').href=url}
+document.getElementById('refresh').addEventListener('click',refresh);
+setInterval(refresh,60000);</script></body></html>
