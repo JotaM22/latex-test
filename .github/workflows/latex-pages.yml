@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Compilar LaTeX con Comic Sans MS
+      - name: Compilar LaTeX con Times New Roman
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
@@ -27,11 +27,11 @@ jobs:
           latexmk_use_xelatex: true
           extra_system_packages: "cabextract curl fontconfig"
           pre_compile: |
-            mkdir -p /usr/local/share/fonts/comicsans
-            curl -fLsS --retry 3 -o /tmp/comic32.exe "https://downloads.sourceforge.net/project/corefonts/the%20fonts/final/comic32.exe"
-            cabextract -L -d /usr/local/share/fonts/comicsans /tmp/comic32.exe
+            mkdir -p /usr/local/share/fonts/timesnewroman
+            curl -fLsS --retry 3 -o /tmp/times32.exe "https://downloads.sourceforge.net/project/corefonts/the%20fonts/final/times32.exe"
+            cabextract -L -d /usr/local/share/fonts/timesnewroman /tmp/times32.exe
             fc-cache -f
-            fc-match "Comic Sans MS"
+            fc-match "Times New Roman"
           args: -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Preparar sitio
         run: |
