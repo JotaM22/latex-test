@@ -19,12 +19,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Compilar LaTeX
+      - name: Compilar LaTeX con Comic Sans MS
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          latexmk_use_xelatex: false
-          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+          os: debian
+          latexmk_use_xelatex: true
+          extra_system_packages: "cabextract curl fontconfig"
+          pre_compile: |
+            mkdir -p /usr/local/share/fonts/comicsans
+            curl -fLsS --retry 3 -o /tmp/comic32.exe "https://downloads.sourceforge.net/project/corefonts/the%20fonts/final/comic32.exe"
+            cabextract -L -d /usr/local/share/fonts/comicsans /tmp/comic32.exe
+            fc-cache -f
+            fc-match "Comic Sans MS"
+          args: -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Preparar sitio
         run: |
           mkdir -p _site
